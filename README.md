@@ -1,2 +1,2 @@
 # AP-CS_group-project
-Java Graph plotting module development
+Java Based Text analysis: KakaoTalk Chat
