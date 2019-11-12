@@ -59,10 +59,14 @@ public class Intro {
         ArrayList<String> real_words = new ArrayList<>();
 
         String[] postpositions = {"은","는","이","가","에","로","의","을","를"};
+        String[] punctuation_marks = {".",",","!","?"};
 
         for(int i = 0 ; i<words.length ; i++){
             if(words[i].length() >= 2){
                 if(Arrays.asList(postpositions).contains((words[i].substring(words[i].length() - 1)))) {
+                    real_words.add(words[i].substring(0, words[i].length() - 1));
+                }
+                else if(Arrays.asList(punctuation_marks).contains((words[i].substring(words[i].length() - 1)))) {
                     real_words.add(words[i].substring(0, words[i].length() - 1));
                 }
                 else{
@@ -84,7 +88,12 @@ public class Intro {
         }
         System.out.println();
 
-        ArrayList<String> words = analysis(sentence.get(0));
+        ArrayList<String> words = new ArrayList<>();
+
+        for (int i = 0 ; i < sentence.size() ; i++){
+            words.addAll(analysis(sentence.get(i)));
+        }
+
         for(String s : words){
             System.out.println(s);
         }
