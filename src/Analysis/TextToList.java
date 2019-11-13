@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Intro {
+public class TextToList {
     public static void main(String[] args) {
         try{
             File file = new File("C:\\Users\\user\\Desktop\\Code\\Java\\KakaotalkforHAS\\src\\Analysis\\test.txt");
