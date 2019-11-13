@@ -10,7 +10,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Intro {
+public class TextToList {
 
     public static ArrayList<String> lineParsing(File file){
         try{
