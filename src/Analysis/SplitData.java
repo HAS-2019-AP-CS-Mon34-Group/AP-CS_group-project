@@ -1,6 +1,7 @@
 package Analysis;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class SplitData {
 
@@ -53,11 +54,15 @@ public class SplitData {
         // 처리 속도를 빠르게 하기 위해 Iterator 대신 String 변환 -> Arrays function 사용
         String[] DataSet = new String[DataList.size()];
         DataSet = DataList.toArray(DataSet);
-        for (int i=0; i<DataList.size(); i++) {
-            int date_index = (DataSet[i].indexOf(':')+3);
-            String NewStr = DataSet[i].substring(0, date_index);
-            NewStr = NewStr.trim();
-            Date.add(NewStr); // 날짜 구분하여 리스트에 추가
+        for (int i=2; i<DataList.size(); i++) {
+            try{
+                int date_index = (DataSet[i].indexOf(':')+3);
+                if (DataSet[i].contains("년 ") && DataSet[i].contains("월 ") && DataSet[i].contains("일 ")) {
+                    String NewStr = DataSet[i].substring(0, date_index);
+                    NewStr = NewStr.trim();
+                    Date.add(NewStr); // 날짜 구분하여 리스트에 추가
+                }
+            } catch (StringIndexOutOfBoundsException ignored) {}
         }
         String[] Final_Date = new String[Date.size()];
         Final_Date = Date.toArray(Final_Date);

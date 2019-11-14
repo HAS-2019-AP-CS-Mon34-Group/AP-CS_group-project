@@ -1,23 +1,23 @@
 package Analysis;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class TimeFormat {
-    public static ZonedDateTime DateInitialize(String DateString) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy'년 'MM'월 'dd'일 'a KK':'mm");
-        Date date = new Date();
-        try {
-            date = sdf.parse(DateString);
-        } catch(ParseException e) {
-            e.printStackTrace();
-        }
-        Instant instant = date.toInstant();
-        ZonedDateTime dateTime = ZonedDateTime.ofInstant(instant, ZoneId.systemDefault());
+    public static LocalDateTime DateInitialize (String DateString) {
+        DateString = DateString.replace("년 ", "/");
+        DateString = DateString.replace("월 ", "/");
+        DateString = DateString.replace("일 ", "/");
+        if (DateString.contains("오후 ")) DateString = DateString.replace("오후 ", "");
+        else DateString = DateString.replace("오전 ", "");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/M/d/H:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(DateString, formatter);
         return dateTime;
+    }
+
+    public static void main(String[] args) {
+        String DateString = "2019년 4월 9일 오후 00:50";
+        System.out.println(DateInitialize(DateString));
     }
 }
