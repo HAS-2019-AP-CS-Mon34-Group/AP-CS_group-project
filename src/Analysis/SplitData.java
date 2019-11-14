@@ -19,11 +19,16 @@ public class SplitData {
                 else
                     name_index1 = (DataSet[i].indexOf(':')+5);
                 int name_index2 = name_index1+3;
-                if (DataSet[i].charAt(name_index2) != '님' || DataSet[i].charAt(name_index2+1) != '님') {
-                    if (!DataSet[i].contains("삭제된 메시지입니다.")) {
+                if (DataSet[i].charAt(name_index2) != '님') {
+                    if (DataSet[i].charAt(name_index2+1) != '님') {
+                        if (!DataSet[i].contains("삭제된 메시지입니다.")) {
+                            String regex = "[가-힣]*";
                             String NewStr = DataSet[i].substring(name_index1, name_index2);
                             NewStr = NewStr.trim(); //공백 제거
-                            Name.add(NewStr); // 이름 구분하여 리스트에 추가
+                            boolean result = Pattern.matches(regex, NewStr);
+                            if (result)
+                                Name.add(NewStr); // 이름 구분하여 리스트에 추가
+                        }
                     }
                 }
             } catch (StringIndexOutOfBoundsException ignored) { }

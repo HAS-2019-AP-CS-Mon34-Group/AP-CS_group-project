@@ -87,7 +87,6 @@ public class MainUI {
 
 			else if (select == 3) {
 				sc.close();
-				// MemberInfo.closeProgram();
 				break;
 			}
 			else {
