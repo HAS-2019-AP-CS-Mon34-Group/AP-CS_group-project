@@ -1,6 +1,5 @@
 package Analysis;
 
-import java.lang.reflect.Array;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -20,7 +19,7 @@ public class ChatbyDate {
         return ScrDate;
     }
 
-    public int ChatByDate(ArrayList<String> DataList, int[] ScrDate) {
+    public void ChatByDate(ArrayList<String> DataList, int[] ScrDate) {
         String[] DateArr = new String[DataList.size()];
         SplitData.GetDate(DataList);
         DateArr = SplitData.Date.toArray(DateArr);
@@ -35,6 +34,6 @@ public class ChatbyDate {
                 count += 1;
             }
         }
-        return count;
+        System.out.println("선택하신 날짜의 대화량은 "+" (회/일) 입니다.");
     }
 }
