@@ -1,8 +1,14 @@
 package Analysis;
 
+import java.io.File;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+
+import static Analysis.SplitData.*;
+import static Analysis.TextToList.analysis;
+import static Analysis.TextToList.lineParsing;
 
 public class ChatbyDate {
 
@@ -19,10 +25,8 @@ public class ChatbyDate {
         return ScrDate;
     }
 
-    public void ChatByDate(ArrayList<String> DataList, int[] ScrDate) {
-        String[] DateArr = new String[DataList.size()];
-        SplitData.GetDate(DataList);
-        DateArr = SplitData.Date.toArray(DateArr);
+    public static void ChatByDate(ArrayList<String> DataList, int[] ScrDate) {
+        String[] DateArr = GetDate(DataList);
         int count = 0;
         for (String s : DateArr) {
             ZonedDateTime DateTime = TimeFormat.DateInitialize(s);
@@ -30,10 +34,27 @@ public class ChatbyDate {
             int month0 = DateTime.getMonthValue();
             int day0 = DateTime.getDayOfMonth();
             // Scanner 로 받은 날짜 입력값과 동일하다면
-            if (ScrDate[0] == year0 && ScrDate[1] == month0 && ScrDate[2] == day0) {
+            if ((ScrDate[0] == year0) && (ScrDate[1] == month0) && (ScrDate[2] == day0)) {
                 count += 1;
             }
+            else
+                count += 0;
         }
-        System.out.println("선택하신 날짜의 대화량은 "+" (회/일) 입니다.");
+        System.out.println("선택하신 날짜의 대화량은 "+ count +" (회/일) 입니다.");
+    }
+
+    public static void main(String[] args) {
+        File file = new File("E:\\Github\\AP-CS_group-project\\src\\Analysis\\test.txt");
+
+        ArrayList<String> sentence = lineParsing(file);
+        System.out.println(sentence);
+
+        System.out.println("이름 리스트 "+ Arrays.toString(GetName(sentence)));
+        System.out.println("날짜 리스트 "+ Arrays.toString(GetDate(sentence)));
+        System.out.println("메시지 리스트: "+ Arrays.toString(GetMessage(sentence)));
+
+        int[] ScrDate = ScannerDate();
+        ChatByDate(sentence, ScrDate);
+
     }
 }
