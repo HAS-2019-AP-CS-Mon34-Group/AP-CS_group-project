@@ -2,11 +2,14 @@ package Analysis;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
-public class DateFormat {
+public class TimeFormat {
 
-    public static Date DateInitialize(String DateString) {
+    public static ZonedDateTime DateInitialize(String DateString) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy'년 'MM'월 'dd'일 'a KK':'mm");
         Date date = new Date();
         try {
@@ -14,7 +17,9 @@ public class DateFormat {
         } catch(ParseException e) {
             e.printStackTrace();
         }
-        return date;
+        Instant instant = date.toInstant();
+        ZonedDateTime dateTime = ZonedDateTime.ofInstant(instant, ZoneId.systemDefault());
+        return dateTime;
     }
 
     public static void main(String[] args) {
