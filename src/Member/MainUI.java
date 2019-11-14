@@ -6,8 +6,7 @@ import java.util.Scanner;
 
 public class MainUI {
 	
-	public static void main(String[] args) throws IOException //존재 이유?
-	{
+	public static void main(String[] args) {
 		FileMaker();
 		
 		// MemberInfo.openProgram();
