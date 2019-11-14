@@ -1,5 +1,7 @@
 package Analysis;
 
+import sun.awt.image.ImageWatched;
+
 import java.awt.image.AreaAveragingScaleFilter;
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,8 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class TextToList {
 
@@ -78,9 +79,24 @@ public class TextToList {
         return real_words;
     }
 
+    public static LinkedHashMap<Object, Integer> wordstomap(ArrayList words){
+        LinkedHashMap<Object,Integer> wordsmap = new LinkedHashMap<>();
+
+        for(int i = 0 ; i < words.size() ; i++){
+            if(wordsmap.containsKey(words.get(i))){
+                wordsmap.put(words.get(i),wordsmap.get(words.get(i))+1);
+            }
+            else {
+                wordsmap.put(words.get(i), 1);
+            }
+        }
+
+        return wordsmap;
+    }
+
 
     public static void main(String[] args) {
-        File file = new File("C:\\Users\\user\\Documents\\GitHub\\AP-CS_group-project\\src\\Analysis\\test.txt");
+        File file = new File("C:\\Users\\user\\Documents\\GitHub\\New\\AP-CS_group-project\\src\\Analysis\\test.txt");
 
         ArrayList<String> sentence = lineParsing(file);
         for(String s : sentence){
@@ -97,5 +113,17 @@ public class TextToList {
         for(String s : words){
             System.out.println(s);
         }
+
+        LinkedHashMap<Object,Integer> wordsmap = wordstomap(words);
+
+        Set<Object> setwordsmap = wordsmap.keySet();
+
+        for(Object s : setwordsmap){
+            System.out.println(s + ", " + wordsmap.get(s));
+        }
+
+        System.out.println("이모티콘" + "," + wordsmap.get("이모티콘"));
+
+
     }
 }
