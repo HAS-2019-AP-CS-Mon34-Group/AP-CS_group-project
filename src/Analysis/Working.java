@@ -13,6 +13,7 @@ public class Working {
 		// MemberInfo.openProgram();
 		Scanner sc=new Scanner(System.in);
 		
+		ShowMenu();
 		System.out.println("메뉴 선택");
 		
 		double select=sc.nextDouble();

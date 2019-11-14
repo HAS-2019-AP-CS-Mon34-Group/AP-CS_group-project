@@ -11,13 +11,13 @@ import java.util.HashMap;
 // import java.util.Set;
 import java.util.regex.Pattern;
 
-public class MemberInfo {
+public class MemberInfo extends MakeFile {
 	
 	static HashMap<String, String> members=new HashMap<>();
 	
 	String id;
 	String pw;
-	String path;
+	// String path;
 	
 	/* static void openProgram() throws IOException {
 		File folder=new File("C:\\KakaoforHAS\\memberHashMap.txt");
@@ -68,7 +68,7 @@ public class MemberInfo {
 		if(Pattern.matches(regex, pw)==true) {
 			this.pw=pw;
 			putInfo(this);
-			makeUserFile(this.id);
+			makeFile();
 		}
 		else System.out.println("잘못된 비밀번호입니다.");
 	}
@@ -87,14 +87,14 @@ public class MemberInfo {
 		else return true;
 	} */
 	
-	void makeUserFile(String id) {
+	/* void makeUserFile() {
 		File folder=new File(path);
 		if(folder.mkdirs()) {
 			System.out.println("성공");
 			System.out.println(folder.getName());
 		}
 		else System.out.println("이미 있습니다.");
-	}
+	} */
 	
 	/* static void closeProgram() throws IOException {
 		File folder=new File("C:\\KakaoforHAS\\memberHashMap.txt");
