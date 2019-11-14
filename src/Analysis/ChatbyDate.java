@@ -3,6 +3,7 @@ package Analysis;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import static Analysis.SplitData.*;
@@ -43,17 +44,11 @@ public class ChatbyDate {
         System.out.println("선택하신 날짜의 대화량은 "+ count +" (회/일) 입니다.");
     }
 
-    public static void main(String[] args) {
+    // 실행 메소드 (Thread 사용 시 활용)
+    public static void GetChatByDate() {
         File file = new File("E:\\Github\\AP-CS_group-project\\src\\Analysis\\test.txt");
         ArrayList<String> sentence = lineParsing(file);
-        /*
-        System.out.println(sentence);
-        System.out.println("이름 리스트 "+ Arrays.toString(GetName(sentence)));
-        System.out.println("날짜 리스트 "+ Arrays.toString(GetDate(sentence)));
-        System.out.println("메시지 리스트: "+ Arrays.toString(GetMessage(sentence)));
-         */
         int[] ScrDate = ScannerDate();
-        // System.out.println(Arrays.toString(ScrDate));
         ChatByDate(sentence, ScrDate);
     }
 }

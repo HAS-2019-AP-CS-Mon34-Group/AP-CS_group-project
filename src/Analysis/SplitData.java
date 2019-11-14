@@ -13,17 +13,17 @@ public class SplitData {
 
             try {
                 int name_index1;
-                if (DataSet[i].indexOf(':') < 0) {
+                if (DataSet[i].indexOf(':') < 15) {
                     name_index1 = -9999;
                 }
                 else
                     name_index1 = (DataSet[i].indexOf(':')+5);
                 int name_index2 = name_index1+3;
-                if (DataSet[i].charAt(name_index2) != '님') {
+                if (DataSet[i].charAt(name_index2) != '님' || DataSet[i].charAt(name_index2+1) != '님') {
                     if (!DataSet[i].contains("삭제된 메시지입니다.")) {
-                        String NewStr = DataSet[i].substring(name_index1, name_index2);
-                        NewStr = NewStr.trim(); //공백 제거
-                        Name.add(NewStr); // 이름 구분하여 리스트에 추가
+                            String NewStr = DataSet[i].substring(name_index1, name_index2);
+                            NewStr = NewStr.trim(); //공백 제거
+                            Name.add(NewStr); // 이름 구분하여 리스트에 추가
                     }
                 }
             } catch (StringIndexOutOfBoundsException ignored) { }
@@ -37,7 +37,7 @@ public class SplitData {
         ArrayList<String> Message = new ArrayList<>();
         String[] DataSet = new String[DataList.size()];
         DataSet = DataList.toArray(DataSet);
-        for (int i=0; i<DataList.size(); i++) {
+        for (int i=2; i<DataList.size(); i++) {
             try {
                 String[] subMessage = DataSet[i].split(",\\s\\S{2,3}\\s:\\s");
                 Message.add(subMessage[1]);
