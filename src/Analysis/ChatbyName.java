@@ -1,5 +1,7 @@
 package Analysis;
 
+import Member.MainUI;
+
 import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -12,7 +14,7 @@ import static Analysis.TextToList.lineParsing;
 public class ChatbyName {
 
     public static void GetChatByName() {
-        File file = new File("E:\\Github\\AP-CS_group-project\\src\\Analysis\\test.txt");
+        File file = new File(MainUI.getBaseFile());
         ArrayList<String> sentence = lineParsing(file);
 
         String[] NameArr = GetName(sentence);
@@ -34,6 +36,7 @@ public class ChatbyName {
             }
             NameTimes.put(ITRname, count);
         }
+        System.out.println("누가 얼마나 많은 말을 했을까요?");
         System.out.println(NameTimes); //데이터 (HashMap) 출력
     }
 }

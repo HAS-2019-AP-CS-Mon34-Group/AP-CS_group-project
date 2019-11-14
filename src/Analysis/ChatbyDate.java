@@ -1,9 +1,10 @@
 package Analysis;
 
+import Member.MainUI;
+
 import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 import static Analysis.SplitData.*;
@@ -12,10 +13,10 @@ import static Analysis.TextToList.lineParsing;
 public class ChatbyDate {
 
     public static int[] ScannerDate() {
-        Scanner sc = new Scanner(System.in);
+        Scanner scr = new Scanner(System.in);
         System.out.println("검색할 날짜를 입력해 주십시오. Ex) 2019.04.29");
-        String input = sc.nextLine();
-        sc.close();
+        String input = scr.nextLine();
+        scr.close();
         String[] ScrDate0 = input.split("\\.");
         int[] ScrDate = new int[ScrDate0.length];
         for (int i=0; i<ScrDate.length; i++) {
@@ -46,7 +47,7 @@ public class ChatbyDate {
 
     // 실행 메소드 (Thread 사용 시 활용)
     public static void GetChatByDate() {
-        File file = new File("E:\\Github\\AP-CS_group-project\\src\\Analysis\\test.txt");
+        File file = new File(MainUI.getBaseFile());
         ArrayList<String> sentence = lineParsing(file);
         int[] ScrDate = ScannerDate();
         ChatByDate(sentence, ScrDate);

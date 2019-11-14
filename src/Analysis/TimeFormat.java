@@ -15,9 +15,4 @@ public class TimeFormat {
         LocalDateTime dateTime = LocalDateTime.parse(DateString, formatter);
         return dateTime;
     }
-
-    public static void main(String[] args) {
-        String DateString = "2019년 4월 9일 오후 00:50";
-        System.out.println(DateInitialize(DateString));
-    }
 }

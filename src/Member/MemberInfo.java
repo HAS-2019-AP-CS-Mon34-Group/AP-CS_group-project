@@ -17,28 +17,28 @@ public class MemberInfo extends Member.MakeFile {
 	
 	String id;
 	String pw;
+
 	// String path;
 
 	void getID(String id) {
-		String regex="\\w{4,8}";
+		String regex="[a-zA-Z가-힣]{4,8}";
 		if(Pattern.matches(regex, id)) {
-			// if(checkIDOverlap(id)==true)
 				this.id=id;
 		}
-		else System.out.println("�߸��� ���̵��Դϴ�.");
+		else System.out.println("Invalid type of ID. Please check again.");
 	}
 	
 	void getPW(String pw) {
-		String regex="\\w{4,8}";
+		String regex="[a-zA-Z가-힣]{4,8}";
 		if(Pattern.matches(regex, pw)) {
 			this.pw=pw;
 			putInfo(this);
 			makeFile();
 		}
-		else System.out.println("�߸��� ��й�ȣ�Դϴ�.");
+		else System.out.println("Invalid type of Password. Please check again.");
 	}
 	
-	void putInfo(MemberInfo member) {
+	void putInfo (MemberInfo member) {
 		members.put(member.id, member.pw);
 		this.path="C:\\KakaoforHAS\\memberMap\\"+member.id;
 	}

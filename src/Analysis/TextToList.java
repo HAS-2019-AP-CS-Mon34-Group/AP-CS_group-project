@@ -1,5 +1,7 @@
 package Analysis;
 
+import Member.MainUI;
+import sun.applet.Main;
 import sun.awt.image.ImageWatched;
 
 import java.awt.image.AreaAveragingScaleFilter;
@@ -14,18 +16,14 @@ import java.util.*;
 public class TextToList {
 
     public static ArrayList<String> lineParsing(File file){
+
         try{
-
-
-            FileReader filereader = new FileReader(file);
-            //입력 버퍼 생성
+            FileReader filereader = new FileReader(file); //입력 버퍼 생성
             BufferedReader bufReader = new BufferedReader(filereader);
-
             ArrayList<String> sent = new ArrayList<>();
-
             String line="";
 
-            while(true){
+            while (true) {
                 line = bufReader.readLine();
                 if(line == null){
                     break;
@@ -34,7 +32,6 @@ public class TextToList {
                     continue;
                 }
                 sent.add(line);
-
             }
 
 //            for(String s : sent){
@@ -43,12 +40,10 @@ public class TextToList {
 
             bufReader.close();
             return sent;
-
-
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             // TODO: handle exception
             return null;
-        }catch(IOException e) {
+        } catch(IOException e) {
             System.out.println(e);
             return null;
         }
@@ -62,16 +57,14 @@ public class TextToList {
         String[] postpositions = {"은","는","이","가","에","로","의","을","를"};
         String[] punctuation_marks = {".",",","!","?"};
 
-        for(int i = 0 ; i<words.length ; i++){
-            if(words[i].length() >= 2){
-                if(Arrays.asList(postpositions).contains((words[i].substring(words[i].length() - 1)))) {
-                    real_words.add(words[i].substring(0, words[i].length() - 1));
-                }
-                else if(Arrays.asList(punctuation_marks).contains((words[i].substring(words[i].length() - 1)))) {
-                    real_words.add(words[i].substring(0, words[i].length() - 1));
-                }
-                else{
-                    real_words.add(words[i]);
+        for (String word : words) {
+            if (word.length() >= 2) {
+                if (Arrays.asList(postpositions).contains((word.substring(word.length() - 1)))) {
+                    real_words.add(word.substring(0, word.length() - 1));
+                } else if (Arrays.asList(punctuation_marks).contains((word.substring(word.length() - 1)))) {
+                    real_words.add(word.substring(0, word.length() - 1));
+                } else {
+                    real_words.add(word);
                 }
             }
         }
@@ -90,40 +83,6 @@ public class TextToList {
                 wordsmap.put(words.get(i), 1);
             }
         }
-
         return wordsmap;
-    }
-
-
-    public static void main(String[] args) {
-        File file = new File("C:\\Users\\user\\Documents\\GitHub\\New\\AP-CS_group-project\\src\\Analysis\\test.txt");
-
-        ArrayList<String> sentence = lineParsing(file);
-        for(String s : sentence){
-            System.out.println(s);
-        }
-        System.out.println();
-
-        ArrayList<String> words = new ArrayList<>();
-
-        for (int i = 0 ; i < sentence.size() ; i++){
-            words.addAll(analysis(sentence.get(i)));
-        }
-
-        for(String s : words){
-            System.out.println(s);
-        }
-
-        LinkedHashMap<Object,Integer> wordsmap = wordstomap(words);
-
-        Set<Object> setwordsmap = wordsmap.keySet();
-
-        for(Object s : setwordsmap){
-            System.out.println(s + ", " + wordsmap.get(s));
-        }
-
-        System.out.println("이모티콘" + "," + wordsmap.get("이모티콘"));
-
-
     }
 }
