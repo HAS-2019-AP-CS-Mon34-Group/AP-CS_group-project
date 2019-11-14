@@ -122,5 +122,8 @@ public class TextToList {
             System.out.println(s + ", " + wordsmap.get(s));
         }
 
+        System.out.println("이모티콘" + "," + wordsmap.get("이모티콘"));
+
+
     }
 }
