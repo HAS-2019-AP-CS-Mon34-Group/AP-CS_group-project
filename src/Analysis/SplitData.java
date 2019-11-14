@@ -8,7 +8,6 @@ public class SplitData {
     public static ArrayList<String> Message = new ArrayList<>();
     public static ArrayList<String> Date = new ArrayList<>(); //날짜 데이터 저장한 값
 
-
     public static void GetName(ArrayList<String>DataList) {
         String[] DataSet = new String[DataList.size()];
         DataSet = DataList.toArray(DataSet);
